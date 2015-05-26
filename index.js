@@ -67,7 +67,7 @@ function unassert (code, options) {
 }
 
 module.exports = function unassertify (filepath, options) {
-	if (isDebugMode(filepath, options)) {
+    if (isDebugMode(filepath, options)) {
         return through();
     }
 
