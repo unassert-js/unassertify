@@ -1,7 +1,7 @@
 {
   "name": "unassertify",
   "description": "Browserify transform to remove assertions on production build",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Takuto Wada",
     "email": "takuto.wada@gmail.com",
