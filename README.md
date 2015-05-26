@@ -3,6 +3,11 @@ unassertify
 
 [Browserify](http://browserify.org/) transform to remove assertions on production build. Encourages Design by Contract (DbC).
 
+[![Build Status][travis-image]][travis-url]
+[![NPM version][npm-image]][npm-url]
+[![Dependency Status][depstat-image]][depstat-url]
+[![License][license-image]][license-url]
+
 
 INSTALL
 ---------------------------------------
@@ -81,3 +86,16 @@ AUTHOR
 LICENSE
 ---------------------------------------
 Licensed under the [MIT](http://twada.mit-license.org/) license.
+
+
+[npm-url]: https://npmjs.org/package/unassertify
+[npm-image]: https://badge.fury.io/js/unassertify.svg
+
+[travis-url]: http://travis-ci.org/twada/unassertify
+[travis-image]: https://secure.travis-ci.org/twada/unassertify.svg?branch=master
+
+[depstat-url]: https://gemnasium.com/twada/unassertify
+[depstat-image]: https://gemnasium.com/twada/unassertify.svg
+
+[license-url]: http://twada.mit-license.org/
+[license-image]: http://img.shields.io/badge/license-MIT-brightgreen.svg
