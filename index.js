@@ -55,6 +55,7 @@ function unassert (code, options) {
         enter: function (currentNode, parentNode) {
             if (matchers.some(matches(currentNode))) {
                 pathToRemove[parentPath(this)] = true;
+                this.skip();
             }
         },
         leave: function (currentNode, parentNode) {
