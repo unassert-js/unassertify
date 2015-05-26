@@ -1,0 +1,24 @@
+{
+  "name": "unassertify",
+  "description": "Browserify transform to remove assertions on production build",
+  "version": "0.1.0",
+  "author": "Takuto Wada",
+  "dependencies": {
+    "through": "^2.3.6"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  },
+  "keywords": [
+    "DbC",
+    "assert",
+    "assertion",
+    "browserify",
+    "browserify-transform"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  }
+}
