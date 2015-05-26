@@ -4,6 +4,10 @@
   "version": "0.1.0",
   "author": "Takuto Wada",
   "dependencies": {
+    "escallmatch": "^1.4.1",
+    "escodegen": "^1.6.1",
+    "esprima": "^2.2.0",
+    "estraverse": "^4.1.0",
     "through": "^2.3.6"
   },
   "devDependencies": {
