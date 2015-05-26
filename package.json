@@ -2,7 +2,12 @@
   "name": "unassertify",
   "description": "Browserify transform to remove assertions on production build",
   "version": "0.1.0",
-  "author": "Takuto Wada",
+  "author": {
+    "name": "Takuto Wada",
+    "email": "takuto.wada@gmail.com",
+    "url": "http://github.com/twada"
+  },
+  "bugs": "https://github.com/twada/unassertify/issues",
   "dependencies": {
     "escallmatch": "^1.4.1",
     "escodegen": "^1.6.1",
@@ -13,6 +18,13 @@
   "devDependencies": {
     "mocha": "^2.2.5"
   },
+  "files": [
+    "README.md",
+    "CHANGELOG.md",
+    "index.js",
+    "package.json"
+  ],
+  "homepage": "http://github.com/twada/unassertify",
   "keywords": [
     "DbC",
     "assert",
@@ -22,6 +34,10 @@
   ],
   "license": "MIT",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/twada/unassertify.git"
+  },
   "scripts": {
     "test": "mocha"
   }
