@@ -9,6 +9,12 @@ unassertify
 [![License][license-image]][license-url]
 
 
+#### RELATED MODULES
+
+- [unassert](https://github.com/twada/unassert): Remove assertions from AST
+- [babel-plugin-unassert](https://github.com/twada/babel-plugin-unassert): Babel plugin to remove assertions on build
+
+
 INSTALL
 ---------------------------------------
 
