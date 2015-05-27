@@ -1,3 +1,9 @@
+### [1.0.2](https://github.com/twada/unassertify/releases/tag/v1.0.2) (2015-05-27)
+
+
+* extract [unassert](https://github.com/twada/unassert) module out ([0e192a2d](https://github.com/twada/unassertify/commit/0e192a2d0fdf31a0ffb410d57e779c446785f3bd))
+
+
 ### [1.0.1](https://github.com/twada/unassertify/releases/tag/v1.0.1) (2015-05-27)
 
 
