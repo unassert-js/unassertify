@@ -9,11 +9,10 @@
   },
   "bugs": "https://github.com/twada/unassertify/issues",
   "dependencies": {
-    "escallmatch": "^1.4.1",
     "escodegen": "^1.6.1",
     "esprima": "^2.2.0",
-    "estraverse": "^4.1.0",
-    "through": "^2.3.7"
+    "through": "^2.3.7",
+    "unassert": "^1.0.0"
   },
   "devDependencies": {
     "mocha": "^2.2.5"
