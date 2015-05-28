@@ -15,7 +15,7 @@ var esprima = require('esprima');
 var escodegen = require('escodegen');
 var unassert = require('unassert');
 
-function isDebugMode (filepath, options) {
+function isDebugMode (options) {
     return (options && options._flags && options._flags.debug);
 }
 
@@ -25,7 +25,7 @@ function applyUnassert (code, options) {
 }
 
 module.exports = function unassertify (filepath, options) {
-    if (isDebugMode(filepath, options)) {
+    if (isDebugMode(options)) {
         return through();
     }
 
