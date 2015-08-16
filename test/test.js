@@ -2,8 +2,27 @@
 
 var unassertify = require('..');
 var fs = require('fs');
+var path = require('path');
 var Stream = require('stream');
 var assert = require('assert');
+var browserify = require('browserify');
+var es = require('event-stream');
+
+
+describe('unassertify', function () {
+    it('removes assert dependency', function (done) {
+        var b = browserify();
+        b.add(path.normalize(path.join(__dirname, 'fixtures', 'func', 'fixture.js')));
+        b.transform(unassertify);
+        b.bundle().pipe(es.wait(function(err, data) {
+            assert(!err);
+            var code = data.toString('utf-8');
+            // console.log(code);
+            assert(! /assert/.test(code));
+            done();
+        }));
+    });
+});
 
 
 describe('do nothing if debug: true', function() {
