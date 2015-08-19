@@ -20,7 +20,7 @@ function isDebugMode (options) {
 }
 
 function applyUnassert (code, options) {
-    var ast = esprima.parse(code);
+    var ast = esprima.parse(code, { sourceType: 'module' });
     return escodegen.generate(unassert(ast));
 }
 
