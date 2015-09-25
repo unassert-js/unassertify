@@ -25,7 +25,7 @@ describe('unassertify', function () {
 });
 
 
-describe('do nothing if debug: true', function() {
+describe('adjust sourcemap if debug: true', function() {
     var stream = unassertify(
         '/absolute/path/to/test/fixtures/func/fixture.js',
         {
@@ -47,7 +47,7 @@ describe('do nothing if debug: true', function() {
             output += buf;
         });
         stream.on('end', function() {
-            var expected = fs.readFileSync('test/fixtures/func/fixture.js', 'utf8');
+            var expected = fs.readFileSync('test/fixtures/func/expected-with-sourcemap.js', 'utf8');
             assert.equal(output, expected);
             done();
         });
@@ -57,7 +57,7 @@ describe('do nothing if debug: true', function() {
 });
 
 
-describe('remove assertions if debug: false', function() {
+describe('just remove assertions if debug: false', function() {
     var stream = unassertify(
         '/absolute/path/to/test/fixtures/func/fixture.js',
         {

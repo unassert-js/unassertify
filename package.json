@@ -9,8 +9,10 @@
   },
   "bugs": "https://github.com/twada/unassertify/issues",
   "dependencies": {
+    "convert-source-map": "^1.1.1",
     "escodegen": "^1.6.1",
     "esprima": "^2.2.0",
+    "multi-stage-sourcemap": "^0.2.1",
     "through": "^2.3.7",
     "unassert": "^1.1.0"
   },
