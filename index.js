@@ -67,7 +67,7 @@ function applyUnassertWithoutSourceMap (code, filepath, options) {
     return escodegen.generate(unassert(ast));
 }
 
-function isDebugMode (options) {
+function shouldProduceSourceMap (options) {
     return (options && options._flags && options._flags.debug);
 }
 
@@ -80,7 +80,7 @@ module.exports = function unassertify (filepath, options) {
     }
 
     function end() {
-        if (isDebugMode(options)) {
+        if (shouldProduceSourceMap(options)) {
             stream.queue(applyUnassertWithSourceMap(data, filepath, options));
         } else {
             stream.queue(applyUnassertWithoutSourceMap(data, filepath, options));
