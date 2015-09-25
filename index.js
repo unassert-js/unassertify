@@ -1,6 +1,6 @@
 /**
  * unassertify
- *   Browserify transform to remove assertions on production build
+ *   Browserify transform to remove assertions from code to encourage Design by Contract (DbC)
  * 
  * https://github.com/twada/unassertify
  *
