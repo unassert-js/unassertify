@@ -19,8 +19,11 @@
   "devDependencies": {
     "browserify": "^11.0.1",
     "coffeeify": "^1.1.0",
+    "espower-loader": "^1.0.0",
     "event-stream": "^3.3.1",
-    "mocha": "^2.2.5"
+    "intelli-espower-loader": "^1.0.0",
+    "mocha": "^2.2.5",
+    "power-assert": "^1.0.1"
   },
   "files": [
     "README.md",
@@ -43,6 +46,6 @@
     "url": "http://github.com/twada/unassertify.git"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --require intelli-espower-loader"
   }
 }
