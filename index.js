@@ -36,7 +36,7 @@ function handleIncomingSourceMap (originalCode) {
 }
 
 function applyUnassertWithSourceMap (code, filepath, options) {
-    var ast = esprima.parse(code, { sourceType: 'module' });
+    var ast = esprima.parse(code, { sourceType: 'module', tolerant: true, loc: true });
     var inMap = handleIncomingSourceMap(code);
     var instrumented = escodegen.generate(unassert(ast), {
         sourceMap: filepath,
