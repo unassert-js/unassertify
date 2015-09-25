@@ -1,7 +1,7 @@
 unassertify
 ================================
 
-[Browserify](http://browserify.org/) transform to remove assertions on production build. Encourages Design by Contract (DbC).
+[Browserify](http://browserify.org/) transform to remove assertions from code. Encourages Design by Contract (DbC).
 
 [![Build Status][travis-image]][travis-url]
 [![NPM version][npm-image]][npm-url]
@@ -43,7 +43,7 @@ var glob = require('glob'),
 
 gulp.task('production_build', function() {
     var files = glob.sync('./src/*.js');
-    var b = browserify({entries: files, debug: false});
+    var b = browserify({entries: files});
     b.transform('unassertify');
     return b.bundle()
         .pipe(source('bundle.js'))

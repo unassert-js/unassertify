@@ -4,9 +4,11 @@ var unassertify = require('..');
 var fs = require('fs');
 var path = require('path');
 var Stream = require('stream');
-var assert = require('assert');
+var assert = require('power-assert');
 var browserify = require('browserify');
+var coffeeify = require('coffeeify');
 var es = require('event-stream');
+var convert = require('convert-source-map');
 
 
 describe('unassertify', function () {
@@ -22,10 +24,72 @@ describe('unassertify', function () {
             done();
         }));
     });
+    it('produces sourcemap when debug: true', function (done) {
+        var b = browserify({debug: true});
+        var testFilepath = path.normalize(path.join(__dirname, 'fixtures', 'func', 'fixture.js'));
+        b.add(testFilepath);
+        b.transform(unassertify);
+        b.bundle().pipe(es.wait(function(err, data) {
+            assert(!err);
+            var code = data.toString('utf-8');
+            // console.log(code);
+            assert(! /assert/.test(code));
+            var inlineMap = convert.fromSource(code);
+            assert(inlineMap);
+            var sourceMap = inlineMap.toObject();
+            assert(sourceMap);
+            // console.log(JSON.stringify(sourceMap, null, 2));
+            assert(sourceMap.sources.some(function (fpath) { return fpath === testFilepath; }));
+            done();
+        }));
+    });
 });
 
 
-describe('do nothing if debug: true', function() {
+describe('with preceding transform', function () {
+    it('just remove assertions and dependencies when debug: false', function (done) {
+        var b = browserify();
+        b.add(path.normalize(path.join(__dirname, 'fixtures', 'coffee', 'fixture.coffee')));
+        b.transform(coffeeify);
+        b.transform(unassertify);
+        b.bundle().pipe(es.wait(function(err, data) {
+            assert(!err);
+            var code = data.toString('utf-8');
+            // console.log(code);
+            var inlineMap = convert.fromSource(code);
+            assert(!inlineMap);
+            assert(! /require\('assert'\)/.test(code));
+            done();
+        }));
+    });
+    it('adjust sourcemap if debug: true', function (done) {
+        var b = browserify({debug: true});
+        var testFilepath = path.normalize(path.join(__dirname, 'fixtures', 'coffee', 'fixture.coffee'));
+        b.add(testFilepath);
+        b.transform(coffeeify);
+        b.transform(unassertify);
+        b.bundle().pipe(es.wait(function(err, data) {
+            assert(!err);
+            var code = data.toString('utf-8');
+            // console.log(code);
+            assert(! /require\('assert'\)/.test(code));
+            var inlineMap = convert.fromSource(code);
+            assert(inlineMap);
+            var sourceMap = inlineMap.toObject();
+            assert(sourceMap);
+            // console.log(JSON.stringify(sourceMap, null, 2));
+            assert(sourceMap.sources.some(function (fpath) { return fpath === testFilepath; }));
+            var originalCode = fs.readFileSync(testFilepath, 'utf-8');
+            assert(sourceMap.sourcesContent.some(function (eachCode) {
+                return eachCode === originalCode;
+            }));
+            done();
+        }));
+    });
+});
+
+
+describe('adjust sourcemap if debug: true', function() {
     var stream = unassertify(
         '/absolute/path/to/test/fixtures/func/fixture.js',
         {
@@ -47,7 +111,7 @@ describe('do nothing if debug: true', function() {
             output += buf;
         });
         stream.on('end', function() {
-            var expected = fs.readFileSync('test/fixtures/func/fixture.js', 'utf8');
+            var expected = fs.readFileSync('test/fixtures/func/expected-with-sourcemap.js', 'utf8');
             assert.equal(output, expected);
             done();
         });
@@ -57,7 +121,7 @@ describe('do nothing if debug: true', function() {
 });
 
 
-describe('remove assertions if debug: false', function() {
+describe('just remove assertions if debug: false', function() {
     var stream = unassertify(
         '/absolute/path/to/test/fixtures/func/fixture.js',
         {
