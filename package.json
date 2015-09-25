@@ -14,7 +14,7 @@
     "esprima": "^2.2.0",
     "multi-stage-sourcemap": "^0.2.1",
     "through": "^2.3.7",
-    "unassert": "^1.1.0"
+    "unassert": "^1.2.0"
   },
   "devDependencies": {
     "browserify": "^11.0.1",
