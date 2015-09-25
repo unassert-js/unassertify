@@ -90,7 +90,7 @@ function add(a, b) {
 SUPPORTED PATTERNS
 ---------------------------------------
 
-Assertion expressions are removed when it matches patterns below. IOW, unassertify removes assertion calls that are compatible with Node.js standard [assert](http://nodejs.org/api/assert.html) API (and `console.assert`).
+Assertion expressions are removed when they match patterns below. IOW, unassertify removes assertion calls that are compatible with Node.js standard [assert](http://nodejs.org/api/assert.html) API (and `console.assert`).
 
 * `assert(value, [message])`
 * `assert.ok(value, [message])`
