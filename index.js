@@ -10,6 +10,7 @@
  */
 'use strict';
 
+var path = require('path');
 var through = require('through');
 var esprima = require('esprima');
 var escodegen = require('escodegen');
@@ -77,6 +78,10 @@ function shouldProduceSourceMap (options) {
 }
 
 module.exports = function unassertify (filepath, options) {
+    if (path.extname(filepath) === '.json') {
+        return through();
+    }
+
     var data = '',
         stream = through(write, end);
 
