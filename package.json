@@ -22,6 +22,7 @@
     "espower-loader": "^1.0.0",
     "event-stream": "^3.3.1",
     "intelli-espower-loader": "^1.0.0",
+    "jshint": "^2.8.0",
     "mocha": "^2.3.3",
     "power-assert": "^1.0.1"
   },
@@ -46,6 +47,7 @@
     "url": "http://github.com/twada/unassertify.git"
   },
   "scripts": {
-    "test": "mocha --require intelli-espower-loader"
+    "lint": "jshint index.js",
+    "test": "npm run lint && mocha --require intelli-espower-loader"
   }
 }
