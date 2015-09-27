@@ -50,7 +50,7 @@ function handleIncomingSourceMap (originalCode) {
     return null;
 }
 
-function applyUnassertWithSourceMap (code, filepath, options) {
+function applyUnassertWithSourceMap (code, filepath) {
     var ast = esprima.parse(code, { sourceType: 'module', tolerant: true, loc: true });
     var inMap = handleIncomingSourceMap(code);
     var instrumented = escodegen.generate(unassert(ast), {
@@ -67,7 +67,7 @@ function applyUnassertWithSourceMap (code, filepath, options) {
     }
 }
 
-function applyUnassertWithoutSourceMap (code, filepath, options) {
+function applyUnassertWithoutSourceMap (code) {
     var ast = esprima.parse(code, { sourceType: 'module' });
     return escodegen.generate(unassert(ast));
 }
@@ -86,9 +86,9 @@ module.exports = function unassertify (filepath, options) {
 
     function end() {
         if (shouldProduceSourceMap(options)) {
-            stream.queue(applyUnassertWithSourceMap(data, filepath, options));
+            stream.queue(applyUnassertWithSourceMap(data, filepath));
         } else {
-            stream.queue(applyUnassertWithoutSourceMap(data, filepath, options));
+            stream.queue(applyUnassertWithoutSourceMap(data));
         }        
         stream.queue(null);
     }
