@@ -1,3 +1,11 @@
+### [2.0.2](https://github.com/twada/unassertify/releases/tag/v2.0.2) (2015-09-27)
+
+
+#### Bug Fixes
+
+  * should not transform JSON file ([6653d38c](https://github.com/twada/unassertify/commit/6653d38c3cf69d4601a3f517226d8d403629f756))
+
+
 ### [2.0.1](https://github.com/twada/unassertify/releases/tag/v2.0.1) (2015-09-27)
 
 
