@@ -27,6 +27,21 @@ function mergeSourceMap (incomingSourceMap, outgoingSourceMap) {
     return JSON.parse(transfer({fromSourceMap: outgoingSourceMap, toSourceMap: incomingSourceMap}));
 }
 
+function copyPropertyIfExists (name, from, to) {
+    if (from[name]) {
+        to.setProperty(name, from[name]);
+    }
+}
+
+function reconnectSourceMap (inMap, outMap) {
+    var mergedRawMap = mergeSourceMap(inMap, outMap.toObject());
+    var reMap = convert.fromObject(mergedRawMap);
+    copyPropertyIfExists('sources', inMap, reMap);
+    copyPropertyIfExists('sourceRoot', inMap, reMap);
+    copyPropertyIfExists('sourcesContent', inMap, reMap);
+    return reMap;
+}
+
 function handleIncomingSourceMap (originalCode) {
     var commented = convert.fromSource(originalCode);
     if (commented) {
@@ -45,17 +60,7 @@ function applyUnassertWithSourceMap (code, filepath, options) {
     });
     var outMap = convert.fromJSON(instrumented.map.toString());
     if (inMap) {
-        var mergedRawMap = mergeSourceMap(inMap, outMap.toObject());
-        var reMap = convert.fromObject(mergedRawMap);
-        if (inMap.sources) {
-            reMap.setProperty('sources', inMap.sources);
-        }
-        if (inMap.sourceRoot) {
-            reMap.setProperty('sourceRoot', inMap.sourceRoot);
-        }
-        if (inMap.sourcesContent) {
-            reMap.setProperty('sourcesContent', inMap.sourcesContent);
-        }
+        var reMap = reconnectSourceMap(inMap, outMap);
         return instrumented.code + '\n' + reMap.toComment() + '\n';
     } else {
         return instrumented.code + '\n' + outMap.toComment() + '\n';
