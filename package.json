@@ -1,6 +1,6 @@
 {
   "name": "unassertify",
-  "description": "Browserify transform to remove assertions from code to encourage Design by Contract (DbC)",
+  "description": "Browserify transform to encourage Design by Contract (DbC) by writing assertions in production code, and compiling them away from release",
   "version": "2.0.2",
   "author": {
     "name": "Takuto Wada",

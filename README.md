@@ -1,7 +1,7 @@
 unassertify
 ================================
 
-[Browserify](http://browserify.org/) transform to remove assertions from code. Encourages Design by Contract (DbC).
+[Browserify](http://browserify.org/) transform to encourage Design by Contract (DbC) by writing assertions in production code, and compiling them away from release.
 
 [![Build Status][travis-image]][travis-url]
 [![NPM version][npm-image]][npm-url]
