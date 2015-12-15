@@ -1,7 +1,7 @@
 unassertify
 ================================
 
-[Browserify](http://browserify.org/) transform to encourage Design by Contract (DbC) by writing assertions in production code, and compiling them away from release.
+[Browserify](http://browserify.org/) transform to encourage reliable programming by writing assertions in production code, and compiling them away from release.
 
 [![Build Status][travis-image]][travis-url]
 [![NPM version][npm-image]][npm-url]
@@ -11,9 +11,10 @@ unassertify
 
 #### RELATED MODULES
 
-- [unassert](https://github.com/twada/unassert): Remove assertions from AST
-- [babel-plugin-unassert](https://github.com/twada/babel-plugin-unassert): Babel plugin to remove assertions on build
-- [webpack-unassert-loader](https://github.com/zoncoen/webpack-unassert-loader): A webpack loader to remove assertions on production build
+- [unassert](https://github.com/twada/unassert): Encourage reliable programming by writing assertions in production code, and compiling them away from release.
+- [babel-plugin-unassert](https://github.com/twada/babel-plugin-unassert): Babel plugin for unassert
+- [webpack-unassert-loader](https://github.com/zoncoen/webpack-unassert-loader): Webpack loader for unassert
+- [gulp-unassert](https://github.com/twada/gulp-unassert): Gulp plugin for unassert
 
 
 INSTALL
