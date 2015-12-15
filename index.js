@@ -29,7 +29,7 @@ function mergeSourceMap (incomingSourceMap, outgoingSourceMap) {
 }
 
 function copyPropertyIfExists (name, from, to) {
-    if (from[name]) {
+    if (from.hasOwnProperty(name)) {
         to.setProperty(name, from[name]);
     }
 }
