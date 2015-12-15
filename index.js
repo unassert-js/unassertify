@@ -28,7 +28,7 @@ function mergeSourceMap (incomingSourceMap, outgoingSourceMap) {
     return JSON.parse(transfer({fromSourceMap: outgoingSourceMap, toSourceMap: incomingSourceMap}));
 }
 
-function copyPropertyIfExists (name, from, to) {
+function overwritePropertyIfExists (name, from, to) {
     if (from.hasOwnProperty(name)) {
         to.setProperty(name, from[name]);
     }
@@ -37,9 +37,9 @@ function copyPropertyIfExists (name, from, to) {
 function reconnectSourceMap (inMap, outMap) {
     var mergedRawMap = mergeSourceMap(inMap, outMap.toObject());
     var reMap = convert.fromObject(mergedRawMap);
-    copyPropertyIfExists('sources', inMap, reMap);
-    copyPropertyIfExists('sourceRoot', inMap, reMap);
-    copyPropertyIfExists('sourcesContent', inMap, reMap);
+    overwritePropertyIfExists('sources', inMap, reMap);
+    overwritePropertyIfExists('sourceRoot', inMap, reMap);
+    overwritePropertyIfExists('sourcesContent', inMap, reMap);
     return reMap;
 }
 
