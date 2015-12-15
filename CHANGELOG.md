@@ -1,3 +1,11 @@
+### [2.0.3](https://github.com/twada/unassertify/releases/tag/v2.0.3) (2015-12-16)
+
+
+#### Bug Fixes
+
+  * copy sourceRoot even if it is an empty string ([d687a4bc](https://github.com/twada/unassertify/commit/d687a4bcc1514d030abd9170db04660dd861267e))
+
+
 ### [2.0.2](https://github.com/twada/unassertify/releases/tag/v2.0.2) (2015-09-27)
 
 
