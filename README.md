@@ -91,7 +91,7 @@ function add(a, b) {
 SUPPORTED PATTERNS
 ---------------------------------------
 
-Assertion expressions are removed when they match patterns below. In other words, unassertify removes assertion calls that are compatible with Node.js standard [assert](http://nodejs.org/api/assert.html) API (and `console.assert`).
+Assertion expressions are removed when they match patterns below. In other words, unassertify removes assertion calls that are compatible with Node.js standard [assert](https://nodejs.org/api/assert.html) API (and `console.assert`).
 
 * `assert(value, [message])`
 * `assert.ok(value, [message])`
@@ -122,7 +122,7 @@ and assignments.
 
 AUTHOR
 ---------------------------------------
-* [Takuto Wada](http://github.com/twada)
+* [Takuto Wada](https://github.com/twada)
 
 
 LICENSE
@@ -133,11 +133,11 @@ Licensed under the [MIT](http://twada.mit-license.org/) license.
 [npm-url]: https://npmjs.org/package/unassertify
 [npm-image]: https://badge.fury.io/js/unassertify.svg
 
-[travis-url]: http://travis-ci.org/twada/unassertify
+[travis-url]: https://travis-ci.org/twada/unassertify
 [travis-image]: https://secure.travis-ci.org/twada/unassertify.svg?branch=master
 
 [depstat-url]: https://gemnasium.com/twada/unassertify
 [depstat-image]: https://gemnasium.com/twada/unassertify.svg
 
 [license-url]: http://twada.mit-license.org/
-[license-image]: http://img.shields.io/badge/license-MIT-brightgreen.svg
+[license-image]: https://img.shields.io/badge/license-MIT-brightgreen.svg
