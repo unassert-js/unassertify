@@ -15,6 +15,7 @@ unassertify
 - [babel-plugin-unassert](https://github.com/twada/babel-plugin-unassert): Babel plugin for unassert
 - [webpack-unassert-loader](https://github.com/zoncoen/webpack-unassert-loader): Webpack loader for unassert
 - [gulp-unassert](https://github.com/twada/gulp-unassert): Gulp plugin for unassert
+- [unassert-cli](https://github.com/twada/unassert-cli): CLI for unassert
 
 
 INSTALL
