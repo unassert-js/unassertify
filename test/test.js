@@ -78,7 +78,7 @@ describe('with preceding transform', function () {
             var sourceMap = inlineMap.toObject();
             assert(sourceMap);
             // console.log(JSON.stringify(sourceMap, null, 2));
-            assert(sourceMap.sources.some(function (fpath) { return fpath === testFilepath; }));
+            assert(sourceMap.sources.some(function (fpath) { return testFilepath.lastIndexOf(fpath) !== -1; }));
             var originalCode = fs.readFileSync(testFilepath, 'utf-8');
             assert(sourceMap.sourcesContent.some(function (eachCode) {
                 return eachCode === originalCode;

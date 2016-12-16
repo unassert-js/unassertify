@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "browserify": "^13.1.0",
-    "coffeeify": "^1.1.0",
+    "coffeeify": "^2.0.0",
     "espower-loader": "^1.0.1",
     "event-stream": "^3.3.4",
     "intelli-espower-loader": "^1.0.1",
