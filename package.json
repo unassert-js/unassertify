@@ -7,7 +7,7 @@
     "email": "takuto.wada@gmail.com",
     "url": "https://github.com/twada"
   },
-  "bugs": "https://github.com/twada/unassertify/issues",
+  "bugs": "https://github.com/unassert-js/unassertify/issues",
   "dependencies": {
     "convert-source-map": "^1.1.1",
     "escodegen": "^1.6.1",
@@ -32,7 +32,7 @@
     "index.js",
     "package.json"
   ],
-  "homepage": "https://github.com/twada/unassertify",
+  "homepage": "https://github.com/unassert-js/unassertify",
   "keywords": [
     "DbC",
     "unassert",
@@ -45,7 +45,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/twada/unassertify.git"
+    "url": "https://github.com/unassert-js/unassertify.git"
   },
   "scripts": {
     "lint": "jshint index.js",

@@ -11,11 +11,11 @@ unassertify
 
 #### RELATED MODULES
 
-- [unassert](https://github.com/twada/unassert): Encourage reliable programming by writing assertions in production code, and compiling them away from release.
-- [babel-plugin-unassert](https://github.com/twada/babel-plugin-unassert): Babel plugin for unassert
-- [webpack-unassert-loader](https://github.com/zoncoen/webpack-unassert-loader): Webpack loader for unassert
-- [gulp-unassert](https://github.com/twada/gulp-unassert): Gulp plugin for unassert
-- [unassert-cli](https://github.com/twada/unassert-cli): CLI for unassert
+- [unassert](https://github.com/unassert-js/unassert): Encourage reliable programming by writing assertions in production code, and compiling them away from release.
+- [babel-plugin-unassert](https://github.com/unassert-js/babel-plugin-unassert): Babel plugin for unassert
+- [webpack-unassert-loader](https://github.com/unassert-js/webpack-unassert-loader): Webpack loader for unassert
+- [gulp-unassert](https://github.com/unassert-js/gulp-unassert): Gulp plugin for unassert
+- [unassert-cli](https://github.com/unassert-js/unassert-cli): CLI for unassert
 
 
 INSTALL
@@ -134,11 +134,11 @@ Licensed under the [MIT](https://twada.mit-license.org/2015-2016) license.
 [npm-url]: https://npmjs.org/package/unassertify
 [npm-image]: https://badge.fury.io/js/unassertify.svg
 
-[travis-url]: https://travis-ci.org/twada/unassertify
-[travis-image]: https://secure.travis-ci.org/twada/unassertify.svg?branch=master
+[travis-url]: https://travis-ci.org/unassert-js/unassertify
+[travis-image]: https://secure.travis-ci.org/unassert-js/unassertify.svg?branch=master
 
-[depstat-url]: https://gemnasium.com/twada/unassertify
-[depstat-image]: https://gemnasium.com/twada/unassertify.svg
+[depstat-url]: https://gemnasium.com/unassert-js/unassertify
+[depstat-image]: https://gemnasium.com/unassert-js/unassertify.svg
 
 [license-url]: https://twada.mit-license.org/2015-2016
 [license-image]: https://img.shields.io/badge/license-MIT-brightgreen.svg

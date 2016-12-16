@@ -2,7 +2,7 @@
  * unassertify
  *   Browserify transform to encourage reliable programming by writing assertions in production code, and compiling them away from release
  * 
- * https://github.com/twada/unassertify
+ * https://github.com/unassert-js/unassertify
  *
  * Copyright (c) 2015-2016 Takuto Wada
  * Licensed under the MIT license.
