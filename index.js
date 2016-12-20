@@ -12,7 +12,7 @@
 
 var path = require('path');
 var through = require('through');
-var esprima = require('esprima');
+var acorn = require('acorn');
 var escodegen = require('escodegen');
 var convert = require('convert-source-map');
 var transfer = require('multi-stage-sourcemap').transfer;
@@ -52,7 +52,7 @@ function handleIncomingSourceMap (originalCode) {
 }
 
 function applyUnassertWithSourceMap (code, filepath) {
-    var ast = esprima.parse(code, { sourceType: 'module', tolerant: true, loc: true });
+    var ast = acorn.parse(code, { sourceType: 'module', locations: true });
     var inMap = handleIncomingSourceMap(code);
     var instrumented = escodegen.generate(unassert(ast), {
         sourceMap: filepath,
@@ -69,7 +69,7 @@ function applyUnassertWithSourceMap (code, filepath) {
 }
 
 function applyUnassertWithoutSourceMap (code) {
-    var ast = esprima.parse(code, { sourceType: 'module' });
+    var ast = acorn.parse(code, { sourceType: 'module' });
     return escodegen.generate(unassert(ast));
 }
 
