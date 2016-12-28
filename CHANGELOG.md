@@ -1,3 +1,12 @@
+### [2.0.4](https://github.com/unassert-js/unassertify/releases/tag/v2.0.4) (2016-12-28)
+
+
+#### Chore
+
+  * transfer to unassert-js organization ([72ea9da](https://github.com/unassert-js/unassertify/commit/72ea9da397acb62d427a3efb1d62946ad236560a))
+  * switch to acorn ([c3f1785](https://github.com/unassert-js/unassertify/commit/c3f17856eca710794baafc9e0a8351434df0a8de))
+
+
 ### [2.0.3](https://github.com/unassert-js/unassertify/releases/tag/v2.0.3) (2015-12-16)
 
 
