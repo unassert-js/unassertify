@@ -1,6 +1,6 @@
 {
   "name": "unassertify",
-  "description": "Browserify transform to encourage reliable programming by writing assertions in production code, and compiling them away from release",
+  "description": "Browserify transform for unassert: Encourages programming with assertions by providing tools to compile them away",
   "version": "2.0.4",
   "author": {
     "name": "Takuto Wada",
