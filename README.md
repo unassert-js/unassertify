@@ -1,7 +1,7 @@
 unassertify
 ================================
 
-[Browserify](http://browserify.org/) transform to encourage reliable programming by writing assertions in production code, and compiling them away from release.
+[Browserify](http://browserify.org/) transform for [unassert](https://github.com/unassert-js/unassert): Encourages programming with assertions by providing tools to compile them away.
 
 [![Build Status][travis-image]][travis-url]
 [![NPM version][npm-image]][npm-url]
@@ -11,7 +11,7 @@ unassertify
 
 #### RELATED MODULES
 
-- [unassert](https://github.com/unassert-js/unassert): Encourage reliable programming by writing assertions in production code, and compiling them away from release.
+- [unassert](https://github.com/unassert-js/unassert): Encourages programming with assertions by providing tools to compile them away.
 - [babel-plugin-unassert](https://github.com/unassert-js/babel-plugin-unassert): Babel plugin for unassert
 - [webpack-unassert-loader](https://github.com/unassert-js/webpack-unassert-loader): Webpack loader for unassert
 - [gulp-unassert](https://github.com/unassert-js/gulp-unassert): Gulp plugin for unassert

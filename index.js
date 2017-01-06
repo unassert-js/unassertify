@@ -1,6 +1,7 @@
 /**
  * unassertify
- *   Browserify transform to encourage reliable programming by writing assertions in production code, and compiling them away from release
+ *   Browserify transform for unassert
+ *     Encourages programming with assertions by providing tools to compile them away.
  * 
  * https://github.com/unassert-js/unassertify
  *
