@@ -1,7 +1,9 @@
 unassertify
 ================================
 
-[Browserify](http://browserify.org/) transform for [unassert](https://github.com/unassert-js/unassert): Encourages programming with assertions by providing tools to compile them away.
+[Browserify](http://browserify.org/) transform for [unassert](https://github.com/unassert-js/unassert): Encourages [programming with assertions](https://en.wikipedia.org/wiki/Assertion_(software_development)) by providing tools to compile them away.
+
+[![unassert][unassert-banner]][unassert-url]
 
 [![Build Status][travis-image]][travis-url]
 [![NPM version][npm-image]][npm-url]
@@ -140,6 +142,9 @@ LICENSE
 ---------------------------------------
 Licensed under the [MIT](https://github.com/unassert-js/unassertify/blob/master/LICENSE) license.
 
+
+[unassert-url]: https://github.com/unassert-js/unassert
+[unassert-banner]: https://raw.githubusercontent.com/unassert-js/unassert-js-logo/master/banner/banner-official-fullcolor.png
 
 [npm-url]: https://npmjs.org/package/unassertify
 [npm-image]: https://badge.fury.io/js/unassertify.svg
