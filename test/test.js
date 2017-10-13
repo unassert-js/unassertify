@@ -183,3 +183,23 @@ describe('when incoming code is JSON file', function() {
         file.pipe(stream);
     });
 });
+
+
+describe('when incoming code contains #! hash bang', function() {
+    var stream = unassertify(
+        '/tmp/JSONStream.js',
+        { _flags: {} }
+    );
+
+    it('should ignore hashbang', function(done) {
+        var output = '';
+        stream.on('data', function(buf) {
+            output += buf;
+        });
+        stream.on('end', function() {
+            // We didn't crash while parsing!
+            done();
+        });
+        stream.end('#!/usr/bin/env node\n\nvar assert = require("assert"); assert(10 == 10);');
+    });
+});

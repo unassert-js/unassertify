@@ -53,7 +53,11 @@ function handleIncomingSourceMap (originalCode) {
 }
 
 function applyUnassertWithSourceMap (code, filepath) {
-    var ast = acorn.parse(code, { sourceType: 'module', locations: true });
+    var ast = acorn.parse(code, {
+      sourceType: 'module',
+      locations: true,
+      allowHashBang: true
+    });
     var inMap = handleIncomingSourceMap(code);
     var instrumented = escodegen.generate(unassert(ast), {
         sourceMap: filepath,
@@ -70,7 +74,10 @@ function applyUnassertWithSourceMap (code, filepath) {
 }
 
 function applyUnassertWithoutSourceMap (code) {
-    var ast = acorn.parse(code, { sourceType: 'module' });
+    var ast = acorn.parse(code, {
+      sourceType: 'module',
+      allowHashBang: true
+    });
     return escodegen.generate(unassert(ast));
 }
 
