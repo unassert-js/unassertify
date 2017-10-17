@@ -8,6 +8,12 @@
     "url": "https://github.com/twada"
   },
   "bugs": "https://github.com/unassert-js/unassertify/issues",
+  "contributors": [
+    {
+      "name": "Renée Kooi",
+      "url": "https://github.com/goto-bus-stop"
+    }
+  ],
   "dependencies": {
     "acorn": "^4.0.0",
     "convert-source-map": "^1.1.1",
