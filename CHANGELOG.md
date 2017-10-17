@@ -1,3 +1,11 @@
+### [2.0.5](https://github.com/unassert-js/unassertify/releases/tag/v2.0.5) (2017-10-17)
+
+
+#### Bug Fixes
+
+  * [fix parsing code with hashbangs (#!)](https://github.com/unassert-js/unassertify/pull/3) by [@goto-bus-stop](https://github.com/goto-bus-stop)
+
+
 ### [2.0.4](https://github.com/unassert-js/unassertify/releases/tag/v2.0.4) (2016-12-28)
 
 
