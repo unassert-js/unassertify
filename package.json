@@ -1,7 +1,7 @@
 {
   "name": "unassertify",
   "description": "Browserify transform for unassert: Encourages programming with assertions by providing tools to compile them away",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "author": {
     "name": "Takuto Wada",
     "email": "takuto.wada@gmail.com",
