@@ -1,3 +1,11 @@
+### [2.1.0](https://github.com/unassert-js/unassertify/releases/tag/v2.1.0) (2017-10-23)
+
+
+#### Features
+
+  * [Set `ecmaVersion: 2018` when parsing](https://github.com/unassert-js/unassertify/pull/4) by [@goto-bus-stop](https://github.com/goto-bus-stop)
+
+
 ### [2.0.5](https://github.com/unassert-js/unassertify/releases/tag/v2.0.5) (2017-10-17)
 
 
