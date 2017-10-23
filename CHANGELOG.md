@@ -1,4 +1,4 @@
-### [2.1.0](https://github.com/unassert-js/unassertify/releases/tag/v2.1.0) (2017-10-23)
+## [2.1.0](https://github.com/unassert-js/unassertify/releases/tag/v2.1.0) (2017-10-23)
 
 
 #### Features
