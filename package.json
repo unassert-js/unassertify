@@ -15,7 +15,7 @@
     }
   ],
   "dependencies": {
-    "acorn": "^4.0.0",
+    "acorn": "^5.1.0",
     "convert-source-map": "^1.1.1",
     "escodegen": "^1.6.1",
     "multi-stage-sourcemap": "^0.2.1",
