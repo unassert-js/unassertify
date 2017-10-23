@@ -55,7 +55,7 @@ function handleIncomingSourceMap (originalCode) {
 function applyUnassertWithSourceMap (code, filepath) {
     var ast = acorn.parse(code, {
         sourceType: 'module',
-        ecmaVersion: 9,
+        ecmaVersion: 2018,
         locations: true,
         allowHashBang: true
     });
@@ -77,7 +77,7 @@ function applyUnassertWithSourceMap (code, filepath) {
 function applyUnassertWithoutSourceMap (code) {
     var ast = acorn.parse(code, {
         sourceType: 'module',
-        ecmaVersion: 9,
+        ecmaVersion: 2018,
         allowHashBang: true
     });
     return escodegen.generate(unassert(ast));
