@@ -43,6 +43,17 @@ describe('unassertify', function () {
             done();
         }));
     });
+    it('skips files that do not contain assertions', function (done) {
+        var filename = path.join(__dirname, 'fixtures', 'func', 'no-assert.js');
+        fs.createReadStream(filename)
+            .pipe(unassertify(filename, {}))
+            .pipe(es.wait(function(err, data) {
+                assert(!err);
+                var code = data.toString('utf-8');
+                assert(! /assert/.test(code));
+                done();
+            }));
+    });
 });
 
 
