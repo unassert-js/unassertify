@@ -1,3 +1,11 @@
+### [2.1.1](https://github.com/unassert-js/unassertify/releases/tag/v2.1.1) (2018-04-19)
+
+
+#### Performance Improvements
+
+  * [Skip parsing if file doesn't contain assertions](https://github.com/unassert-js/unassertify/pull/6) by [@goto-bus-stop](https://github.com/goto-bus-stop)
+
+
 ## [2.1.0](https://github.com/unassert-js/unassertify/releases/tag/v2.1.0) (2017-10-23)
 
 
