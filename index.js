@@ -87,6 +87,11 @@ function shouldProduceSourceMap (options) {
     return (options && options._flags && options._flags.debug);
 }
 
+function containsAssertions (src) {
+    // Matches both `assert` and `power-assert`.
+    return src.indexOf('assert') !== -1;
+}
+
 module.exports = function unassertify (filepath, options) {
     if (path.extname(filepath) === '.json') {
         return through();
@@ -100,11 +105,13 @@ module.exports = function unassertify (filepath, options) {
     }
 
     function end() {
-        if (shouldProduceSourceMap(options)) {
+        if (!containsAssertions(data)) {
+            stream.queue(data);
+        } else if (shouldProduceSourceMap(options)) {
             stream.queue(applyUnassertWithSourceMap(data, filepath));
         } else {
             stream.queue(applyUnassertWithoutSourceMap(data));
-        }        
+        }
         stream.queue(null);
     }
 
