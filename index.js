@@ -5,7 +5,7 @@
  * 
  * https://github.com/unassert-js/unassertify
  *
- * Copyright (c) 2015-2017 Takuto Wada
+ * Copyright (c) 2015-2018 Takuto Wada
  * Licensed under the MIT license.
  *   https://github.com/unassert-js/unassertify/blob/master/LICENSE
  */
