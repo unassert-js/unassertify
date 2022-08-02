@@ -2,7 +2,7 @@
  * unassertify
  *   Browserify transform for unassert
  *     Encourages programming with assertions by providing tools to compile them away.
- * 
+ *
  * https://github.com/unassert-js/unassertify
  *
  * Copyright (c) 2015-2018 Takuto Wada
@@ -11,109 +11,110 @@
  */
 'use strict';
 
-var path = require('path');
-var through = require('through');
-var acorn = require('acorn');
-var escodegen = require('escodegen');
-var convert = require('convert-source-map');
-var transfer = require('multi-stage-sourcemap').transfer;
-var unassert = require('unassert');
+const path = require('path');
+const through = require('through');
+const acorn = require('acorn');
+const escodegen = require('escodegen');
+const convert = require('convert-source-map');
+const { transfer } = require('multi-stage-sourcemap');
+const unassert = require('unassert');
+const hasOwn = Object.prototype.hasOwnProperty;
 
 function mergeSourceMap (incomingSourceMap, outgoingSourceMap) {
-    if (typeof outgoingSourceMap === 'string' || outgoingSourceMap instanceof String) {
-        outgoingSourceMap = JSON.parse(outgoingSourceMap);
-    }
-    if (!incomingSourceMap) {
-        return outgoingSourceMap;
-    }
-    return JSON.parse(transfer({fromSourceMap: outgoingSourceMap, toSourceMap: incomingSourceMap}));
+  if (typeof outgoingSourceMap === 'string' || outgoingSourceMap instanceof String) {
+    outgoingSourceMap = JSON.parse(outgoingSourceMap);
+  }
+  if (!incomingSourceMap) {
+    return outgoingSourceMap;
+  }
+  return JSON.parse(transfer({ fromSourceMap: outgoingSourceMap, toSourceMap: incomingSourceMap }));
 }
 
 function overwritePropertyIfExists (name, from, to) {
-    if (from.hasOwnProperty(name)) {
-        to.setProperty(name, from[name]);
-    }
+  if (hasOwn.call(from, name)) {
+    to.setProperty(name, from[name]);
+  }
 }
 
 function reconnectSourceMap (inMap, outMap) {
-    var mergedRawMap = mergeSourceMap(inMap, outMap.toObject());
-    var reMap = convert.fromObject(mergedRawMap);
-    overwritePropertyIfExists('sources', inMap, reMap);
-    overwritePropertyIfExists('sourceRoot', inMap, reMap);
-    overwritePropertyIfExists('sourcesContent', inMap, reMap);
-    return reMap;
+  const mergedRawMap = mergeSourceMap(inMap, outMap.toObject());
+  const reMap = convert.fromObject(mergedRawMap);
+  overwritePropertyIfExists('sources', inMap, reMap);
+  overwritePropertyIfExists('sourceRoot', inMap, reMap);
+  overwritePropertyIfExists('sourcesContent', inMap, reMap);
+  return reMap;
 }
 
 function handleIncomingSourceMap (originalCode) {
-    var commented = convert.fromSource(originalCode);
-    if (commented) {
-        return commented.toObject();
-    }
-    return null;
+  const commented = convert.fromSource(originalCode);
+  if (commented) {
+    return commented.toObject();
+  }
+  return null;
 }
 
 function applyUnassertWithSourceMap (code, filepath) {
-    var ast = acorn.parse(code, {
-        sourceType: 'module',
-        ecmaVersion: 2018,
-        locations: true,
-        allowHashBang: true
-    });
-    var inMap = handleIncomingSourceMap(code);
-    var instrumented = escodegen.generate(unassert(ast), {
-        sourceMap: filepath,
-        sourceContent: code,
-        sourceMapWithCode: true
-    });
-    var outMap = convert.fromJSON(instrumented.map.toString());
-    if (inMap) {
-        var reMap = reconnectSourceMap(inMap, outMap);
-        return instrumented.code + '\n' + reMap.toComment() + '\n';
-    } else {
-        return instrumented.code + '\n' + outMap.toComment() + '\n';
-    }
+  const ast = acorn.parse(code, {
+    sourceType: 'module',
+    ecmaVersion: 2018,
+    locations: true,
+    allowHashBang: true
+  });
+  const inMap = handleIncomingSourceMap(code);
+  const instrumented = escodegen.generate(unassert(ast), {
+    sourceMap: filepath,
+    sourceContent: code,
+    sourceMapWithCode: true
+  });
+  const outMap = convert.fromJSON(instrumented.map.toString());
+  if (inMap) {
+    const reMap = reconnectSourceMap(inMap, outMap);
+    return instrumented.code + '\n' + reMap.toComment() + '\n';
+  } else {
+    return instrumented.code + '\n' + outMap.toComment() + '\n';
+  }
 }
 
 function applyUnassertWithoutSourceMap (code) {
-    var ast = acorn.parse(code, {
-        sourceType: 'module',
-        ecmaVersion: 2018,
-        allowHashBang: true
-    });
-    return escodegen.generate(unassert(ast));
+  const ast = acorn.parse(code, {
+    sourceType: 'module',
+    ecmaVersion: 2018,
+    allowHashBang: true
+  });
+  return escodegen.generate(unassert(ast));
 }
 
 function shouldProduceSourceMap (options) {
-    return (options && options._flags && options._flags.debug);
+  return (options && options._flags && options._flags.debug);
 }
 
 function containsAssertions (src) {
-    // Matches both `assert` and `power-assert`.
-    return src.indexOf('assert') !== -1;
+  // Matches both `assert` and `power-assert`.
+  return src.indexOf('assert') !== -1;
 }
 
 module.exports = function unassertify (filepath, options) {
-    if (path.extname(filepath) === '.json') {
-        return through();
+  if (path.extname(filepath) === '.json') {
+    return through();
+  }
+
+  let data = '';
+  const stream = through(write, end);
+
+  function write (buf) {
+    data += buf;
+  }
+
+  function end () {
+    if (!containsAssertions(data)) {
+      stream.queue(data);
+    } else if (shouldProduceSourceMap(options)) {
+      stream.queue(applyUnassertWithSourceMap(data, filepath));
+    } else {
+      stream.queue(applyUnassertWithoutSourceMap(data));
     }
+    stream.queue(null);
+  }
 
-    var data = '',
-        stream = through(write, end);
-
-    function write(buf) {
-        data += buf;
-    }
-
-    function end() {
-        if (!containsAssertions(data)) {
-            stream.queue(data);
-        } else if (shouldProduceSourceMap(options)) {
-            stream.queue(applyUnassertWithSourceMap(data, filepath));
-        } else {
-            stream.queue(applyUnassertWithoutSourceMap(data));
-        }
-        stream.queue(null);
-    }
-
-    return stream;
+  return stream;
 };

@@ -7,6 +7,7 @@ unassertify
 
 [![Build Status][ci-image]][ci-url]
 [![NPM version][npm-image]][npm-url]
+[![Code Style][style-image]][style-url]
 [![License][license-image]][license-url]
 
 
@@ -158,3 +159,6 @@ Licensed under the [MIT](https://github.com/unassert-js/unassertify/blob/master/
 
 [license-url]: https://github.com/unassert-js/unassertify/blob/master/LICENSE
 [license-image]: https://img.shields.io/badge/license-MIT-brightgreen.svg
+
+[style-url]: https://github.com/standard/semistandard
+[style-image]: https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg

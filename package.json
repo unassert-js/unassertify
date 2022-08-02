@@ -27,9 +27,10 @@
     "coffeeify": "^3.0.0",
     "event-stream": "^4.0.0",
     "intelli-espower-loader": "^1.0.1",
-    "jshint": "^2.9.3",
     "mocha": "^10.0.0",
-    "power-assert": "^1.4.1"
+    "power-assert": "^1.4.1",
+    "semistandard": "^16.0.0",
+    "snazzy": "^9.0.0"
   },
   "files": [
     "README.md",
@@ -54,7 +55,16 @@
     "url": "https://github.com/unassert-js/unassertify.git"
   },
   "scripts": {
-    "lint": "jshint index.js",
+    "fmt": "semistandard --fix index.js 'test/*.js'",
+    "lint": "semistandard --verbose index.js 'test/*.js' | snazzy",
     "test": "npm run lint && mocha --require intelli-espower-loader"
+  },
+  "semistandard": {
+    "globals": [
+      "describe",
+      "context",
+      "beforeEach",
+      "it"
+    ]
   }
 }
