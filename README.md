@@ -5,9 +5,8 @@ unassertify
 
 [![unassert][unassert-banner]][unassert-url]
 
-[![Build Status][travis-image]][travis-url]
+[![Build Status][ci-image]][ci-url]
 [![NPM version][npm-image]][npm-url]
-[![Dependency Status][depstat-image]][depstat-url]
 [![License][license-image]][license-url]
 
 
@@ -154,11 +153,8 @@ Licensed under the [MIT](https://github.com/unassert-js/unassertify/blob/master/
 [npm-url]: https://npmjs.org/package/unassertify
 [npm-image]: https://badge.fury.io/js/unassertify.svg
 
-[travis-url]: https://travis-ci.org/unassert-js/unassertify
-[travis-image]: https://secure.travis-ci.org/unassert-js/unassertify.svg?branch=master
-
-[depstat-url]: https://gemnasium.com/unassert-js/unassertify
-[depstat-image]: https://gemnasium.com/unassert-js/unassertify.svg
+[ci-image]: https://github.com/unassert-js/unassertify/workflows/Node.js%20CI/badge.svg
+[ci-url]: https://github.com/unassert-js/unassertify/actions?query=workflow%3A%22Node.js+CI%22
 
 [license-url]: https://github.com/unassert-js/unassertify/blob/master/LICENSE
 [license-image]: https://img.shields.io/badge/license-MIT-brightgreen.svg
