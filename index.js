@@ -17,7 +17,7 @@ const acorn = require('acorn');
 const escodegen = require('escodegen');
 const convert = require('convert-source-map');
 const { transfer } = require('multi-stage-sourcemap');
-const unassert = require('unassert');
+const { unassertAst } = require('unassert');
 const hasOwn = Object.prototype.hasOwnProperty;
 
 function mergeSourceMap (incomingSourceMap, outgoingSourceMap) {
@@ -61,7 +61,7 @@ function applyUnassertWithSourceMap (code, filepath) {
     allowHashBang: true
   });
   const inMap = handleIncomingSourceMap(code);
-  const instrumented = escodegen.generate(unassert(ast), {
+  const instrumented = escodegen.generate(unassertAst(ast), {
     sourceMap: filepath,
     sourceContent: code,
     sourceMapWithCode: true
@@ -81,7 +81,7 @@ function applyUnassertWithoutSourceMap (code) {
     ecmaVersion: 2018,
     allowHashBang: true
   });
-  return escodegen.generate(unassert(ast));
+  return escodegen.generate(unassertAst(ast));
 }
 
 function shouldProduceSourceMap (options) {
