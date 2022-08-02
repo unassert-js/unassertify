@@ -5,9 +5,9 @@ unassertify
 
 [![unassert][unassert-banner]][unassert-url]
 
-[![Build Status][travis-image]][travis-url]
+[![Build Status][ci-image]][ci-url]
 [![NPM version][npm-image]][npm-url]
-[![Dependency Status][depstat-image]][depstat-url]
+[![Code Style][style-image]][style-url]
 [![License][license-image]][license-url]
 
 
@@ -18,6 +18,7 @@ unassertify
 - [webpack-unassert-loader](https://github.com/unassert-js/webpack-unassert-loader): Webpack loader for unassert
 - [gulp-unassert](https://github.com/unassert-js/gulp-unassert): Gulp plugin for unassert
 - [unassert-cli](https://github.com/unassert-js/unassert-cli): CLI for unassert
+- [rollup-plugin-unassert](https://github.com/unassert-js/rollup-plugin-unassert): RollupJS plugin for unassert
 
 
 INSTALL
@@ -154,11 +155,11 @@ Licensed under the [MIT](https://github.com/unassert-js/unassertify/blob/master/
 [npm-url]: https://npmjs.org/package/unassertify
 [npm-image]: https://badge.fury.io/js/unassertify.svg
 
-[travis-url]: https://travis-ci.org/unassert-js/unassertify
-[travis-image]: https://secure.travis-ci.org/unassert-js/unassertify.svg?branch=master
-
-[depstat-url]: https://gemnasium.com/unassert-js/unassertify
-[depstat-image]: https://gemnasium.com/unassert-js/unassertify.svg
+[ci-image]: https://github.com/unassert-js/unassertify/workflows/Node.js%20CI/badge.svg
+[ci-url]: https://github.com/unassert-js/unassertify/actions?query=workflow%3A%22Node.js+CI%22
 
 [license-url]: https://github.com/unassert-js/unassertify/blob/master/LICENSE
 [license-image]: https://img.shields.io/badge/license-MIT-brightgreen.svg
+
+[style-url]: https://github.com/standard/semistandard
+[style-image]: https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg
