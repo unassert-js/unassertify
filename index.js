@@ -19,12 +19,13 @@ const convert = require('convert-source-map');
 const { transfer } = require('multi-stage-sourcemap');
 const { unassertAst, defaultOptions } = require('unassert');
 const hasOwn = Object.prototype.hasOwnProperty;
-// define `assert` explicitly as target variable to work well with `containsAssertions` optimization
-const unassertifyOptions = Object.assign(defaultOptions(), {
-  variables: [
-    'assert'
-  ]
-});
+
+// add `power-assert` to target modules to avoid breaking change since unassertify is not configurable well
+function generateUnassertifyOptions () {
+  const opts = defaultOptions();
+  opts.modules.push('power-assert');
+  return opts;
+}
 
 function mergeSourceMap (incomingSourceMap, outgoingSourceMap) {
   if (typeof outgoingSourceMap === 'string' || outgoingSourceMap instanceof String) {
@@ -95,6 +96,7 @@ function shouldProduceSourceMap (options) {
 }
 
 function containsAssertions (src) {
+  // Matches 'assert','assert/strict','node:assert','node:assert/strict' and 'power-assert'
   return src.indexOf('assert') !== -1;
 }
 
@@ -114,9 +116,9 @@ module.exports = function unassertify (filepath, options) {
     if (!containsAssertions(data)) {
       stream.queue(data);
     } else if (shouldProduceSourceMap(options)) {
-      stream.queue(applyUnassertWithSourceMap(data, filepath, unassertifyOptions));
+      stream.queue(applyUnassertWithSourceMap(data, filepath, generateUnassertifyOptions()));
     } else {
-      stream.queue(applyUnassertWithoutSourceMap(data, unassertifyOptions));
+      stream.queue(applyUnassertWithoutSourceMap(data, generateUnassertifyOptions()));
     }
     stream.queue(null);
   }
