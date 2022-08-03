@@ -151,6 +151,17 @@ and assignments.
 * `assert = require("node:assert").strict`
 
 
+#### Auto Variable Tracking
+
+unassert automatically removes assertion calls based on their imported variable names.
+
+So if import declaration is as follows,
+
+* `import strictAssert, { ok, equal as eq } from 'node:assert/strict';`
+
+unassert removes all `strictAssert`, `ok`, `eq` calls.
+
+
 AUTHOR
 ---------------------------------------
 * [Takuto Wada](https://github.com/twada)
