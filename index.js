@@ -17,8 +17,15 @@ const acorn = require('acorn');
 const escodegen = require('escodegen');
 const convert = require('convert-source-map');
 const { transfer } = require('multi-stage-sourcemap');
-const unassert = require('unassert');
+const { unassertAst, defaultOptions } = require('unassert');
 const hasOwn = Object.prototype.hasOwnProperty;
+
+// add `power-assert` to target modules to avoid breaking change since unassertify is not configurable well
+function generateUnassertifyOptions () {
+  const opts = defaultOptions();
+  opts.modules.push('power-assert');
+  return opts;
+}
 
 function mergeSourceMap (incomingSourceMap, outgoingSourceMap) {
   if (typeof outgoingSourceMap === 'string' || outgoingSourceMap instanceof String) {
@@ -53,15 +60,15 @@ function handleIncomingSourceMap (originalCode) {
   return null;
 }
 
-function applyUnassertWithSourceMap (code, filepath) {
+function applyUnassertWithSourceMap (code, filepath, unassertOptions) {
   const ast = acorn.parse(code, {
     sourceType: 'module',
-    ecmaVersion: 2018,
+    ecmaVersion: 'latest',
     locations: true,
     allowHashBang: true
   });
   const inMap = handleIncomingSourceMap(code);
-  const instrumented = escodegen.generate(unassert(ast), {
+  const instrumented = escodegen.generate(unassertAst(ast, unassertOptions), {
     sourceMap: filepath,
     sourceContent: code,
     sourceMapWithCode: true
@@ -75,13 +82,13 @@ function applyUnassertWithSourceMap (code, filepath) {
   }
 }
 
-function applyUnassertWithoutSourceMap (code) {
+function applyUnassertWithoutSourceMap (code, unassertOptions) {
   const ast = acorn.parse(code, {
     sourceType: 'module',
-    ecmaVersion: 2018,
+    ecmaVersion: 'latest',
     allowHashBang: true
   });
-  return escodegen.generate(unassert(ast));
+  return escodegen.generate(unassertAst(ast, unassertOptions));
 }
 
 function shouldProduceSourceMap (options) {
@@ -89,7 +96,7 @@ function shouldProduceSourceMap (options) {
 }
 
 function containsAssertions (src) {
-  // Matches both `assert` and `power-assert`.
+  // Matches 'assert','assert/strict','node:assert','node:assert/strict' and 'power-assert'
   return src.indexOf('assert') !== -1;
 }
 
@@ -109,9 +116,9 @@ module.exports = function unassertify (filepath, options) {
     if (!containsAssertions(data)) {
       stream.queue(data);
     } else if (shouldProduceSourceMap(options)) {
-      stream.queue(applyUnassertWithSourceMap(data, filepath));
+      stream.queue(applyUnassertWithSourceMap(data, filepath, generateUnassertifyOptions()));
     } else {
-      stream.queue(applyUnassertWithoutSourceMap(data));
+      stream.queue(applyUnassertWithoutSourceMap(data, generateUnassertifyOptions()));
     }
     stream.queue(null);
   }
