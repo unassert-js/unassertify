@@ -17,8 +17,14 @@ const acorn = require('acorn');
 const escodegen = require('escodegen');
 const convert = require('convert-source-map');
 const { transfer } = require('multi-stage-sourcemap');
-const { unassertAst } = require('unassert');
+const { unassertAst, defaultOptions } = require('unassert');
 const hasOwn = Object.prototype.hasOwnProperty;
+// define `assert` explicitly as target variable to work well with `containsAssertions` optimization
+const unassertifyOptions = Object.assign(defaultOptions(), {
+  variables: [
+    'assert'
+  ]
+});
 
 function mergeSourceMap (incomingSourceMap, outgoingSourceMap) {
   if (typeof outgoingSourceMap === 'string' || outgoingSourceMap instanceof String) {
@@ -53,7 +59,7 @@ function handleIncomingSourceMap (originalCode) {
   return null;
 }
 
-function applyUnassertWithSourceMap (code, filepath) {
+function applyUnassertWithSourceMap (code, filepath, unassertOptions) {
   const ast = acorn.parse(code, {
     sourceType: 'module',
     ecmaVersion: 'latest',
@@ -61,7 +67,7 @@ function applyUnassertWithSourceMap (code, filepath) {
     allowHashBang: true
   });
   const inMap = handleIncomingSourceMap(code);
-  const instrumented = escodegen.generate(unassertAst(ast), {
+  const instrumented = escodegen.generate(unassertAst(ast, unassertOptions), {
     sourceMap: filepath,
     sourceContent: code,
     sourceMapWithCode: true
@@ -75,13 +81,13 @@ function applyUnassertWithSourceMap (code, filepath) {
   }
 }
 
-function applyUnassertWithoutSourceMap (code) {
+function applyUnassertWithoutSourceMap (code, unassertOptions) {
   const ast = acorn.parse(code, {
     sourceType: 'module',
     ecmaVersion: 'latest',
     allowHashBang: true
   });
-  return escodegen.generate(unassertAst(ast));
+  return escodegen.generate(unassertAst(ast, unassertOptions));
 }
 
 function shouldProduceSourceMap (options) {
@@ -89,7 +95,6 @@ function shouldProduceSourceMap (options) {
 }
 
 function containsAssertions (src) {
-  // Matches both `assert` and `power-assert`.
   return src.indexOf('assert') !== -1;
 }
 
@@ -109,9 +114,9 @@ module.exports = function unassertify (filepath, options) {
     if (!containsAssertions(data)) {
       stream.queue(data);
     } else if (shouldProduceSourceMap(options)) {
-      stream.queue(applyUnassertWithSourceMap(data, filepath));
+      stream.queue(applyUnassertWithSourceMap(data, filepath, unassertifyOptions));
     } else {
-      stream.queue(applyUnassertWithoutSourceMap(data));
+      stream.queue(applyUnassertWithoutSourceMap(data, unassertifyOptions));
     }
     stream.queue(null);
   }
