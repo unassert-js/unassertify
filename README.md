@@ -42,13 +42,13 @@ $ $(npm bin)/browserify -t unassertify /path/to/src/target.js > /path/to/build/t
 ### via API
 
 ```javascript
-var source = require('vinyl-source-stream');
-var browserify = require('browserify');
-var glob = require('glob'),
+const source = require('vinyl-source-stream');
+const browserify = require('browserify');
+const glob = require('glob'),
 
 gulp.task('production_build', function() {
-    var files = glob.sync('./src/*.js');
-    var b = browserify({entries: files});
+    const files = glob.sync('./src/*.js');
+    const b = browserify({entries: files});
     b.transform('unassertify');
     return b.bundle()
         .pipe(source('bundle.js'))
@@ -65,7 +65,7 @@ For given `math.js` below,
 ```javascript
 'use strict';
 
-var assert = require('assert');
+const assert = require('node:assert');
 
 function add (a, b) {
     console.assert(typeof a === 'number');
@@ -107,21 +107,48 @@ Assertion expressions are removed when they match patterns below. In other words
 * `assert.notDeepEqual(actual, expected, [message])`
 * `assert.deepStrictEqual(actual, expected, [message])`
 * `assert.notDeepStrictEqual(actual, expected, [message])`
-* `assert.fail(actual, expected, message, operator)`
+* `assert.match(string, regexp[, message])`
+* `assert.doesNotMatch(string, regexp[, message])`
 * `assert.throws(block, [error], [message])`
 * `assert.doesNotThrow(block, [message])`
+* `await assert.rejects(asyncFn, [error], [message])`
+* `await assert.doesNotReject(asyncFn, [error], [message])`
+* `assert.fail([message])`
+* `assert.fail(actual, expected, message, operator)`
 * `assert.ifError(value)`
 * `console.assert(value, [message])`
 
 unassertify also removes assert variable declarations,
 
-* `var assert = require("assert")`
-* `var assert = require("power-assert")`
+* `import assert from "assert"`
+* `import assert from "assert/strict"`
+* `import assert from "node:assert"`
+* `import assert from "node:assert/strict"`
+* `import * as assert from "assert"`
+* `import * as assert from "node:assert"`
+* `import * as assert from "assert/strict"`
+* `import * as assert from "node:assert/strict"`
+* `import { strict as assert } from "assert"`
+* `import { strict as assert } from "node:assert"`
+* `import { default as assert } from "assert"`
+* `import { default as assert } from "node:assert"`
+* `const assert = require("assert")`
+* `const assert = require("node:assert")`
+* `const assert = require("assert/strict")`
+* `const assert = require("node:assert/strict")`
+* `const assert = require("assert").strict`
+* `const assert = require("node:assert").strict`
+* `const { strict: assert } = require("assert")`
+* `const { strict: assert } = require("node:assert")`
 
 and assignments.
 
 * `assert = require("assert")`
-* `assert = require("power-assert")`
+* `assert = require("node:assert")`
+* `assert = require("assert/strict")`
+* `assert = require("node:assert/strict")`
+* `assert = require("assert").strict`
+* `assert = require("node:assert").strict`
 
 
 AUTHOR
