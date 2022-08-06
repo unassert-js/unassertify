@@ -1,3 +1,16 @@
+## [3.0.0](https://github.com/unassert-js/unassertify/releases/tag/v3.0.0) (2022-08-07)
+
+
+#### Features
+
+* [Upgrade unassert to v2.0.0](https://github.com/unassert-js/unassertify/pull/9)
+* change .js to .cjs ([97c32f0b](https://github.com/unassert-js/unassertify/commit/97c32f0bf288787fed27d4abf285fe31c6864ec8))
+
+#### Breaking Changes
+
+This release will not affect most users. This is a major release of "just in case" for unassert-v2 which is completely rewritten.
+
+
 ### [2.1.1](https://github.com/unassert-js/unassertify/releases/tag/v2.1.1) (2018-04-19)
 
 
