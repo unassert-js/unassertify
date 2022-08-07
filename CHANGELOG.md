@@ -1,3 +1,11 @@
+### [3.0.1](https://github.com/unassert-js/unassertify/releases/tag/v3.0.1) (2022-08-07)
+
+
+#### Bug Fixes
+
+* put `.cjs` back to `.js` since browserify ecosystem doesn't yet understand `.cjs` ([5419034a](https://github.com/unassert-js/unassertify/commit/5419034a982b6775b7403740f8bb3577d59ce413))
+
+
 ## [3.0.0](https://github.com/unassert-js/unassertify/releases/tag/v3.0.0) (2022-08-07)
 
 
