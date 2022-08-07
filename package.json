@@ -37,7 +37,7 @@
     "README.md",
     "CHANGELOG.md",
     "LICENSE",
-    "index.cjs",
+    "index.js",
     "package.json"
   ],
   "homepage": "https://github.com/unassert-js/unassertify",
@@ -50,14 +50,14 @@
     "browserify-transform"
   ],
   "license": "MIT",
-  "main": "index.cjs",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/unassert-js/unassertify.git"
   },
   "scripts": {
-    "fmt": "semistandard --fix index.cjs 'test/*.cjs'",
-    "lint": "semistandard --verbose index.cjs 'test/*.cjs' | snazzy",
+    "fmt": "semistandard --fix index.js 'test/*.js'",
+    "lint": "semistandard --verbose index.js 'test/*.js' | snazzy",
     "test": "npm run lint && mocha --require intelli-espower-loader"
   },
   "semistandard": {
